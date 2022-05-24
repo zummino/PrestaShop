@@ -34,8 +34,8 @@ jobs:
 
       - name: PrestaShop Configuration
         run: |
-          cp .github/workflows/phpunit/parameters.yml insert-here-your-web-app/Prestashop/app/config/parameters.yml
-          cp .github/workflows/phpunit/parameters.php insert-here-your-web-app/Prestashop/app/config/parameters.php
+          cp .github/workflows/phpunit/parameters.yml app/config/parameters.yml
+          cp .github/workflows/phpunit/parameters.php app/config/parameters.php
 
       
       - name: "Validate composer.json and composer.lock"
