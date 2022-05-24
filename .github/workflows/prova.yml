@@ -83,6 +83,7 @@ jobs:
           echo "$GITHUB_SHA"
       - name: Step 3 - Creazione directory Test Suite
         run: |
+          pwd
           ls -a
           if [ ! -d "/home/runner/work/PrestaShop/TestSuitePROVA" ]; then
             echo "Vedi se sono dentro l'if numero 1 PROVA"
@@ -115,6 +116,7 @@ jobs:
             echo "Provo ad unzippare chormedriver_linux64.zip"
             unzip chromedriver_linux64.zip
             ls -a
+            pwd
             sudo mv chromedriver /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
             sudo chown root:root /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
             sudo chmod +x /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
