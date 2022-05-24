@@ -85,8 +85,8 @@ jobs:
         run: |
           ls -a
           if [ ! -d "/home/runner/work/PrestaShop/TestSuite" ]; then
-            echo "Vedi se sono dentro l'if numero 1"
-            sudo mkdir TestSuite
+            echo "Vedi se sono dentro l'if numero 1 PROVA"
+            sudo mkdir TestSuite1
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a    
