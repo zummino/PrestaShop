@@ -134,6 +134,7 @@ jobs:
                  
       - name: Step 10 - Visualizzare report test
         run: |
+            ls -a
             cd /home/runner/work/PrestaShop/PrestaShop/project-test-headless/target/surefire-reports
             ls -a 
             echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
