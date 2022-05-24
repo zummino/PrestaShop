@@ -75,7 +75,7 @@ jobs:
 
       - name: Change MySQL authentication method
         run: mysql -h127.0.0.1 -uroot -ppassword -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
-          
+
       - name: Step 2 - Visualizzare tag corrente
         run: |
           echo "Vediamo il tag corrente:"
@@ -95,20 +95,4 @@ jobs:
             sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
-          ls -a
-          
-     - name: Step 6 - Set up JDK 1.8 per progetti di utility
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-            
-      - name: Step 7 - Install Chrome Headless
-        run: |
-          sudo apt-get update
-          sudo apt-get upgrade
-          sudo apt-get -u dist-upgrade
-          sudo apt-get install -y libappindicator1 fonts-liberation
-          sudo apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-scalable
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get -f install
-          google-chrome-stable --headless --disable-gpu           
+          ls -a    
