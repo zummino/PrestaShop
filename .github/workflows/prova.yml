@@ -86,7 +86,8 @@ jobs:
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
-          echo "HO FINITO LO STEP""
+          echo "HO FINITO LO STEP"
+      
       - name: Step 3 - Creazione directory Test Suite
         run: |
           ls -a
