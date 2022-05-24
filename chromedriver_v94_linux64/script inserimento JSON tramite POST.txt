@@ -1,0 +1,2 @@
+
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/prodottorest/add -d "{\"nome\":\"Prodotto inserito via JSON\",\"descrizione\":\"Inserimento con PostMapping Request\",\"prezzo\":120}"
