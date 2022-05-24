@@ -73,7 +73,6 @@ jobs:
 
       - name: Change MySQL authentication method
         run: mysql -h127.0.0.1 -uroot -ppassword -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
-
             
       - name: Step 2 - Visualizzare tag corrente
         run: |
@@ -86,8 +85,8 @@ jobs:
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
-          echo "HO FINITO LO STEP"
-      
+          echo "ho finito lo step"
+
       - name: Step 3 - Creazione directory Test Suite
         run: |
           ls -a
@@ -103,7 +102,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-            
+
       - name: Step 7 - Install Chrome Headless
         run: |
           sudo apt-get update
@@ -114,7 +113,7 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt-get -f install
           google-chrome-stable --headless --disable-gpu    
-          
+
       - name: Step 8 - Install Chrome-Driver for test junit
         run:  |
             wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
@@ -131,12 +130,12 @@ jobs:
             cd chromedriver_v94_linux64
             echo "Contenuto della cartella chromedriver_v94_linux64"
             ls -a
-          
+
       - name: Step 9 - Eseguire test maven
         run:  |
             cd /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/project-test-headless
             sudo bash -c 'mvn test site' || echo "Uno o più test sono falliti."
-                 
+
       - name: Step 10 - Visualizzare report test
         run: |
             cd /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/project-test-headless/target/surefire-reports
@@ -144,4 +143,4 @@ jobs:
             echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
             cat *.txt
             echo "Fine visualizzazione report!!!"                
-        
+
