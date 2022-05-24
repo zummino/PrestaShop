@@ -67,12 +67,6 @@ jobs:
       - name: Composer Install
         run: composer install --ansi --prefer-dist --no-interaction --no-progress
 
-      - name: Make executeable
-        run: chmod +x ./insert-here-your-web-app/Prestashop/tools/assets/build.sh
-        
-      - name: Build theme assets
-        run: sudo make front-classic
-
       - name: Change MySQL authentication method
         run: mysql -h127.0.0.1 -uroot -ppassword -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
