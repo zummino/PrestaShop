@@ -34,8 +34,8 @@ jobs:
 
       - name: PrestaShop Configuration
         run: |
-          cp .github/workflows/phpunit/parameters.yml insert-here-your-web-app/Prestashop/app/config/parameters.yml
-          cp .github/workflows/phpunit/parameters.php insert-here-your-web-app/Prestashop/app/config/parameters.php
+          cp .github/workflows/phpunit/parameters.yml app/config/parameters.yml
+          cp .github/workflows/phpunit/parameters.php app/config/parameters.php
 
       
       - name: "Validate composer.json and composer.lock"
@@ -96,3 +96,10 @@ jobs:
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a    
+
+      - name: Step 6 - Set up JDK 1.8 per progetti di utility
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+            
