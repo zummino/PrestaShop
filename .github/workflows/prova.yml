@@ -34,8 +34,8 @@ jobs:
 
       - name: PrestaShop Configuration
         run: |
-          cp .github/workflows/phpunit/parameters.yml app/config/parameters.yml
-          cp .github/workflows/phpunit/parameters.php app/config/parameters.php
+          cp .github/workflows/phpunit/parameters.yml insert-here-your-web-app/Prestashop/app/config/parameters.yml
+          cp .github/workflows/phpunit/parameters.php insert-here-your-web-app/Prestashop/app/config/parameters.php
 
       
       - name: "Validate composer.json and composer.lock"
@@ -67,13 +67,21 @@ jobs:
       - name: Composer Install
         run: composer install --ansi --prefer-dist --no-interaction --no-progress
 
-              
+      - name: Make executeable
+        run: chmod +x ./insert-here-your-web-app/Prestashop/tools/assets/build.sh
+        
       - name: Build theme assets
         run: sudo make front-classic
 
       - name: Change MySQL authentication method
         run: mysql -h127.0.0.1 -uroot -ppassword -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
-            
+
+      # Runs a single command using the runners shell
+      - name: Step 2 - Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      
       - name: Step 2 - Visualizzare tag corrente
         run: |
           echo "Vediamo il tag corrente:"
@@ -85,8 +93,6 @@ jobs:
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
-          echo "ho finito lo step"
-
       - name: Step 3 - Creazione directory Test Suite
         run: |
           ls -a
@@ -96,51 +102,3 @@ jobs:
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a    
-          echo "HO FINITO LO STEP"
-          
-         - name: Step 6 - Set up JDK 1.8 per progetti di utility
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
-      - name: Step 7 - Install Chrome Headless
-        run: |
-          sudo apt-get update
-          sudo apt-get upgrade
-          sudo apt-get -u dist-upgrade
-          sudo apt-get install -y libappindicator1 fonts-liberation
-          sudo apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-scalable
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get -f install
-          google-chrome-stable --headless --disable-gpu    
-
-      - name: Step 8 - Install Chrome-Driver for test junit
-        run:  |
-            wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-            echo "Vedo se si trova il punto zip"
-            ls -a
-            echo "Provo ad unzippare chormedriver_linux64.zip"
-            unzip chromedriver_linux64.zip
-            sudo mv chromedriver /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
-            sudo chown root:root /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
-            sudo chmod +x /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
-            echo "Vediamo il nome della cartella unzippata"
-            ls -a
-            echo "Vediamo se ha scaricato il driver"
-            cd chromedriver_v94_linux64
-            echo "Contenuto della cartella chromedriver_v94_linux64"
-            ls -a
-
-      - name: Step 9 - Eseguire test maven
-        run:  |
-            cd /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/project-test-headless
-            sudo bash -c 'mvn test site' || echo "Uno o più test sono falliti."
-
-      - name: Step 10 - Visualizzare report test
-        run: |
-            cd /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/project-test-headless/target/surefire-reports
-            ls -a 
-            echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
-            cat *.txt
-            echo "Fine visualizzazione report!!!"                
-
