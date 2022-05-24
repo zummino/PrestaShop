@@ -114,9 +114,9 @@ jobs:
             ls -a
             echo "Provo ad unzippare chormedriver_linux64.zip"
             unzip chromedriver_linux64.zip
-            sudo mv chromedriver /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
-            sudo chown root:root /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
-            sudo chmod +x /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/chromedriver_v94_linux64/chromedriver
+            sudo mv chromedriver /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
+            sudo chown root:root /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
+            sudo chmod +x /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
             echo "Vediamo il nome della cartella unzippata"
             ls -a
             echo "Vediamo se ha scaricato il driver"
