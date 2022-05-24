@@ -84,9 +84,9 @@ jobs:
       - name: Step 3 - Creazione directory Test Suite
         run: |
           ls -a
-          if [ ! -d "/home/runner/work/PrestaShop/TestSuite" ]; then
+          if [ ! -d "/home/runner/work/PrestaShop/TestSuitePROVA" ]; then
             echo "Vedi se sono dentro l'if numero 1 PROVA"
-            sudo mkdir TestSuite1
+            sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a    
@@ -114,6 +114,7 @@ jobs:
             ls -a
             echo "Provo ad unzippare chormedriver_linux64.zip"
             unzip chromedriver_linux64.zip
+            ls -a
             sudo mv chromedriver /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
             sudo chown root:root /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
             sudo chmod +x /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
