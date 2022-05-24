@@ -130,7 +130,7 @@ jobs:
           echo "Andiamo ad aggiungere la cartella dei report"
           git add /home/runner/work/PrestaShop/PrestaShop/project-test-headless/src/test/java/com/example/TesiIntegrazioneProgettoEsterno
           echo "Cartella aggiunta!"
-          cd /home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale
+          cd /home/runner/work/PrestaShop/PrestaShop
           echo "`date +%Y-%m-%d_%H-%M-%S`" > timeCommit.txt
           git add timeCommit.txt
           git commit -m "push automatico per la correzione del formato dei test"
