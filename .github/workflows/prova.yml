@@ -84,7 +84,7 @@ jobs:
       - name: Step 3 - Creazione directory Test Suite
         run: |
           ls -a
-          if [ ! -d "/home/runner/work/Tesi-StrumentoGenerale/Tesi-StrumentoGenerale/TestSuite" ]; then
+          if [ ! -d "/home/runner/work/PrestaShop/TestSuite" ]; then
             echo "Vedi se sono dentro l'if numero 1"
             sudo mkdir TestSuite
           fi
