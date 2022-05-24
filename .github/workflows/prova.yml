@@ -119,11 +119,36 @@ jobs:
             pwd
             sudo mv chromedriver /home/runner/work/PrestaShop/PrestaShop/chromedriver_v94_linux64/chromedriver
             sudo chown root:root /home/runner/work/PrestaShop/PrestaShop/chromedriver_v94_linux64/chromedriver
-            sudo chmod +x /home/runner/work/PrestaShop/chromedriver_v94_linux64/chromedriver
+            sudo chmod +x /home/runner/work/PrestaShop/PrestaShop/chromedriver_v94_linux64/chromedriver
             echo "Vediamo il nome della cartella unzippata"
             ls -a
             echo "Vediamo se ha scaricato il driver"
             cd chromedriver_v94_linux64
             echo "Contenuto della cartella chromedriver_v94_linux64"
             ls -a
+       
+      - name: Step 9 - Eseguire test maven
+        run:  |
+            cd /home/runner/work/PrestaShop/PrestaShop/project-test-headless
+            sudo bash -c 'mvn test site' || echo "Uno o più test sono falliti."
+                 
+      - name: Step 10 - Visualizzare report test
+        run: |
+            cd /home/runner/work/PrestaShop/PrestaShop/project-test-headless/target/surefire-reports
+            ls -a 
+            echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
+            cat *.txt
+            echo "Fine visualizzazione report!!!"                
+       
+      - name: Step 11 - Spostamento report in directory corretta
+        run: |  
+          cd /home/runner/work/PrestaShop/PrestaShop/project-test-headless/target
+          echo "Visualizziamo se c'è la cartella surefire-reports"
+          ls -a 
+          echo "Rinominare la cartella surefire-reports in nome del tag della release creata"
+          sudo mv surefire-reports ${GITHUB_REF#refs/tags/}
+          echo "Vediamo se la ha rinominata:"
+          ls -a
+          sudo cp -r ${GITHUB_REF#refs/tags/} /home/runner/work/PrestaShop/PrestaShop/TestSuite
+          
             
