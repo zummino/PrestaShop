@@ -100,7 +100,7 @@ jobs:
             git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
             git status
             echo "Andiamo ad effettuare il push dei file iniettati"
-            git add /home/runner/work/PrestaShop/PrestaShop/insert-here-your-web-app/*
+            git add /home/runner/work/PrestaShop/PrestaShop/themes*
             cd /home/runner/work/PrestaShop/PrestaShop
             echo "`date +%Y-%m-%d_%H-%M-%S`" > timeCommit.txt
             git add timeCommit.txt
@@ -108,7 +108,8 @@ jobs:
             git commit -m "Commit dal file yml dei file iniettati"
             git branch -M ${GITHUB_REF#refs/heads/} 
             git push -u origin ${GITHUB_REF#refs/heads/} --force
-            echo "Push effettuato"  
+            echo "Push effettuato"
+            cat /home/runner/work/PrestaShop/PrestaShop/themes/contactform.tpl
             
       - name: Step 6 - Esecuzione progetto correzioneFormatoTest
         run: |
