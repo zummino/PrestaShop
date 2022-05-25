@@ -1,5 +1,4 @@
-{**
- * Copyright since 2007 PrestaShop SA and Contributors
+{** * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
  * NOTICE OF LICENSE
@@ -65,7 +64,7 @@
               type="email"
               value="{$contact.email}"
               placeholder="{l s='your@email.com' d='Shop.Forms.Help'}"
-            >
+          >
           </div>
         </div>
 
@@ -107,7 +106,7 @@
               name="message"
               placeholder="{l s='How can we help?' d='Shop.Forms.Help'}"
               rows="3"
-            >{if $contact.message}{$contact.message}{/if}</textarea>
+          >{if $contact.message}{$contact.message}{/if}</textarea>
           </div>
         </div>
 
